@@ -14,9 +14,55 @@ export class CockpitComponent implements OnInit {
   // This variable is bound to the template using [(ngModel)]
   newServerContent = '';
 
+  /*
+    First lifecycle method. Property values are available.
+   */
+  ngOnChanges() {
+
+  }
+
   constructor() { }
 
+  /*
+    ngOnInit is the second lifecycle method. All properties are available, and its called after
+    the constructor.
+   */
   ngOnInit() {
+  }
+
+  /*
+    Called after conent (ng-content) has been projected into view
+   */
+  ngAfterContentInit() {
+
+  }
+
+  /*
+    Called after the component's view and child views have been iniitialized
+   */
+  ngAfterViewInit() {
+
+  }
+
+  /*
+    Called every time the view and child views have been checked
+   */
+  ngAfterViewChecked() {
+
+  }
+
+  /*
+    Called during every change detection run. This method runs a lot.
+   */
+  ngDoCheck() {
+
+  }
+
+  /*
+    Called once the copmonent is about to be destroyed
+   */
+  ngOnDestroy() {
+
   }
 
   onAddServer(nameInput: HTMLInputElement) {
