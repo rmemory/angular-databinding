@@ -31,26 +31,44 @@ In the cockpit component, it has the capability to add new servers,
 and thus click handlers. Newly added servers need to be added to the
 serverElements list in the app-compoent.
 
-The server-component displays all servers, and also needs access
+The server-element displays all servers, and also needs access
 to the serverElements.
 
-So, in the server-component typescript file we add an element
+So, in the server-element typescript file we add an element
 variable, which will receive info from the app-component.
 
 element: {type: string, name: string, content: string};
 
-The template for the server-component uses the data from
+The template for the server-element uses the data from
 the server like this:
 
     <strong *ngIf="element.type === 'server'" style="color: red">{{ element.content }}</strong>
     <em *ngIf="element.type === 'blueprint'">{{ element.content }}</em>
 
-The element variable in the server-component, will need to receive
-data from the app-component. It only knows how to display a single
+The element variable in the server-element, will need to receive
+data from the app-component. server-element only knows how to display a single
 server. Note the usage of ngIf, which means each element only gets
 added to the DOM conditionally.
 
-Now we need to bind the for loop
+Now we need to bind the for loop in the app-component to the element
+variable in server-element.
+
+import { Component, OnInit, Input }
+@Input() element: {type: string, name: string, content: string};
+
+And in app-component template, we add this:
+
+      <app-server-element
+      *ngFor="let serverElement of serverElements"
+      [element]="serverElement">
+
+To rename the binding name, we do this:
+
+@Input('srvElement') element:
+
+      <app-server-element
+        *ngFor="let element of serverElements"
+        [srvElement]=element>
 
 
 
