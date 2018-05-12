@@ -70,6 +70,17 @@ To rename the binding name, we do this:
         *ngFor="let element of serverElements"
         [srvElement]=element>
 
+To trigger an output event from a child component, we do this:
+
+@Output('bpCreated') blueprintCreated = new EventEmitter<{serverName: string, serverContent: string}>();
+
+And we listen to it like this:
+
+      <app-cockpit
+        (serverCreated)="onServerAdded($event)"
+        (bpCreated)="onBlueprintAdded($event)">
+      </app-cockpit>
+
 
 
 

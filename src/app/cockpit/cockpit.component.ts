@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-cockpit',
@@ -10,9 +10,10 @@ export class CockpitComponent implements OnInit {
   @Output('bpCreated') bluePrintCreated = new EventEmitter<{name: string, content: string}>();
 
   // This variable comes in through a local reference
-  newServerName = '';
+  // newServerName = '';
   // This variable is bound to the template using [(ngModel)]
-  newServerContent = '';
+  // newServerContent = '';
+  @ViewChild('serverContentInput') serverContentInput: ElementRef;
 
   /*
     First lifecycle method. Property values are available.
@@ -66,10 +67,12 @@ export class CockpitComponent implements OnInit {
   }
 
   onAddServer(nameInput: HTMLInputElement) {
-    this.serverCreated.emit({name: nameInput.value, content: this.newServerContent});
+    this.serverCreated.emit({name: nameInput.value,
+                            content: this.serverContentInput.nativeElement.value});
   }
 
   onAddBlueprint(nameInput: HTMLInputElement) {
-    this.bluePrintCreated.emit({name: nameInput.value, content: this.newServerContent});
+    this.bluePrintCreated.emit({name: nameInput.value,
+                                content: this.serverContentInput.nativeElement.value});
   }
 }
