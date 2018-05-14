@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, Input, ViewEncapsulation, ViewChild, ElementRef, ContentChild } from '@angular/core';
 
 @Component({
   selector: 'app-server-element',
@@ -11,10 +11,13 @@ export class ServerElementComponent implements OnInit {
   // Use of Input here makes parent component to access (bind to)
   // element, referenced in the parent as srvElement
   @Input('srvElement') element: {type: string, name: string, content: string};
+  @ViewChild('heading') header: ElementRef;
+  @ContentChild('contentParagraph') paragraph: ElementRef;
 
   constructor() { }
 
   ngOnInit() {
+    console.log(this.header.nativeElement.textContent)
   }
 
 }
